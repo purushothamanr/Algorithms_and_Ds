@@ -1,0 +1,35 @@
+import random
+
+
+def helper(arr, start, end):
+    
+    if start >= end:
+        return
+    
+    smaller = start
+    
+    pivot = random.randrange(start, end+1)
+    arr[start], arr[pivot] = arr[pivot], arr[start]
+    
+    for bigger in range(start +1, end+1):
+        if arr[bigger] < arr[start]:
+            smaller += 1
+            arr[bigger], arr[smaller] = arr[smaller], arr[bigger]
+    
+    arr[start], arr[smaller] = arr[smaller], arr[start]
+    
+    helper(arr, start, smaller - 1)
+    helper(arr, smaller + 1, end)
+    
+    return
+    
+def quick_sort(arr):
+    """
+    Args:
+     arr(list_int32)
+    Returns:
+     list_int32
+    """
+    # Write your code here.
+    
+    helper(arr, 0, len(arr) - 1)
