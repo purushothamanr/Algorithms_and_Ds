@@ -1,0 +1,35 @@
+def counting_sort(arr):
+    """
+    Args:
+     arr(list_int32)
+    Returns:
+     list_int32
+    """
+    # Write your code here.
+    
+    if not arr:
+        return arr
+        
+    min_v, max_v = arr[0], arr[0]
+    
+    for i in range(len(arr)):
+        
+        if arr[i] > max_v:
+            max_v = arr[i]
+            
+        if arr[i] < min_v:
+            min_v = arr[i]
+    
+    print(min_v, max_v)
+    
+    aux_array = (max_v - min_v +1) *[0]
+    
+    for i in range(len(arr)):
+        aux_array[arr[i] - min_v] += 1
+        
+    i = 0
+    for index, freq in enumerate(aux_array):
+        for e in range(freq):
+            arr[i] = index + min_v
+            i += 1
+    return arr
