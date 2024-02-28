@@ -1,0 +1,56 @@
+def helper(arr, start, end):
+    
+    if start == end:
+       
+        return
+    
+    
+    mid = ( start + end)//2
+    
+   
+    helper(arr, start, mid)
+    helper(arr, mid+1, end)
+    
+    left = start
+    right = mid + 1
+    
+    aux_array = []
+    
+    while left <= mid and right <= end:
+        if arr[left] <= arr[right]:
+            aux_array.append(arr[left])
+            left += 1
+        else:
+            aux_array.append(arr[right])
+            right += 1
+    
+    while left <= mid:
+        aux_array.append(arr[left])
+        left += 1
+    
+    while right <= end:
+        aux_array.append(arr[right])
+        right += 1
+    
+    i = 0
+    
+    while start <= end:
+        arr[start] = aux_array[i]
+        start += 1
+        i += 1
+    
+    return     
+        
+    
+    
+def merge_sort(arr):
+    """
+    Args:
+     arr(list_int32)
+    Returns:
+     list_int32
+    """
+    # Write your code here.
+    
+    helper(arr, 0, len(arr) - 1)
+    return arr
